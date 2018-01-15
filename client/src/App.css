@@ -1,0 +1,11 @@
+.App {
+  margin-top: 15px;
+  /* background-color: rgb(238, 255, 239); */
+  background-color: rgb(242, 246, 255);
+  height: 100%;
+  width: 100%;
+}
+
+.App .navbar-brand {
+  font-weight: bold;
+}

@@ -84,7 +84,7 @@ export default class Signup extends Component {
         this.state.password
       );
   
-      this.props.userHasAuthenticated(true);
+      this.props.userHasAuthenticated(true, this.state.newUser);
       this.props.history.push("/");
 
       this.state.newUser.enableMFA(function(err, result) {
@@ -92,7 +92,7 @@ export default class Signup extends Component {
             alert(err);
             return;
         }
-        console.log('call result: ' + result);
+        // console.log('call result: ' + result);
       });
 
     } catch (e) {

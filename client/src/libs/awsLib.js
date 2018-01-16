@@ -46,6 +46,28 @@ export function getCurrentUser() {
   return userPool.getCurrentUser();
 }
 
+// export function getUserCognitoIdentityID(){
+//   // Set the region where your identity pool exists (us-east-1, eu-west-1)
+//   AWS.config.region = 'us-east-1';
+
+//   // Configure the credentials provider to use your identity pool
+//   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+//       IdentityPoolId: 'IDENTITY_POOL_ID',
+//   });
+
+//   // Make the call to obtain credentials
+//   AWS.config.credentials.get(function(){
+
+//       // Credentials will be available when this function is called.
+//       var accessKeyId = AWS.config.credentials.accessKeyId;
+//       var secretAccessKey = AWS.config.credentials.secretAccessKey;
+//       var sessionToken = AWS.config.credentials.sessionToken;
+
+//   });
+  
+//   return AWS.config.credentials.identityId;
+// }
+
 
 // clear session and aws credentials on logout
 export function signOutUser() {

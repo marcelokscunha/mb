@@ -8,6 +8,7 @@ import {
     AuthenticationDetails,
     CognitoUser
   } from "amazon-cognito-identity-js";
+// import getUserCognitoIdentityID from "../libs/awsLib";
 
 
 
@@ -21,8 +22,7 @@ export default class Login extends Component {
       password: "",
       user: null,
       MFA: "",
-      aux: null //,
-      //mfaEnabled: null
+      mfaEnabled: null
     };
   }
 
@@ -47,58 +47,16 @@ export default class Login extends Component {
 
     try {
       await this.login(this.state.email, this.state.password);
-      // if (mfaEnabled === false){
-      //   this.props.userHasAuthenticated(true, this.state.user);
-      //   this.props.history.push("/");
-      // }
+      // var r = getUserCognitoIdentityID();
+      // console.log(JSON.stringify.r);
+      if (this.state.mfaEnabled === false){
+        this.props.userHasAuthenticated(true, this.state.user);
+        this.props.history.push("/");
+      }
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });
     }
-  }
-
-  handleSubmitMFA = async event => {
-    event.preventDefault();
-    
-    this.setState({ isLoading: true });
-
-    try {
-      // await this.state.user.sendMFACode(this.state.MFA, this.state.aux);
-      await this.sendMFA(this.state.user, this.state.MFA);
-
-      this.props.userHasAuthenticated(true, this.state.user);
-      this.props.history.push("/");
-    } catch (e) {
-      alert(e);
-      this.setState({ isLoading: false });
-    }
-  }
-
-  sendMFA(user, code){
-    return new Promise((resolve, reject) =>
-      user.sendMFACode(code, {
-        onSuccess: result => resolve(),
-        // function(){ 
-        // //////////
-          // var params = {
-          //   IdentityPoolId: config.cognito.IDENTITY_POOL_ID, /* required */
-          //   AccountId: config.cognito.ACCOUNT_ID,
-          //   Logins: {
-          //     'Amazon Cognito Identity Provider:': config.cognito.IDENTITY_PROVIDER_NAME
-          //   }
-          // };
-
-          // cognitoidentity.getId(params, function(err, data) {
-          //   if (err) console.log(err, err.stack); // an error occurred
-          //   else     console.log(data); /*user = data.identityId;*/        // successful response
-          // });
-          // //data.IdentityId
-        // //////////
-        //   _this.setState({ user: user, isLoading: false, aux: this, mfaEnabled: true})
-        // },
-        onFailure: err => reject(err)
-      })
-    );
   }
 
   login(email, password) {
@@ -113,29 +71,43 @@ export default class Login extends Component {
 
     return new Promise((resolve, reject) =>
       user.authenticateUser(authenticationDetails, {
-        onSuccess: result => resolve(),
-        // function(){
-        //// //////////
-          // var params = {
-          //   IdentityPoolId: config.cognito.IDENTITY_POOL_ID, /* required */
-          //   AccountId: config.awsAccount.ACCOUNT_ID,
-          //   Logins: {
-          //     'Amazon Cognito Identity Provider:': IDENTITY_PROVIDER_NAME,
-          //   }
-          // };
-
-          // cognitoidentity.getId(params, function(err, data) {
-          //   if (err) console.log(err, err.stack); // an error occurred
-          //   else     console.log(data);   //user = data.identityId;        // successful response
-          // });
-          // //data.IdentityId
-        //// //////////
-        //   _this.setState({ user: user, isLoading: false, aux: this, mfaEnabled: false})
-        // },
+        onSuccess: result => resolve(
+          _this.setState({user: user, isLoading: false, mfaEnabled: false})
+        ),
+        // User Cognito Identity ID -> user: getUserCognitoIdentityID()
         onFailure: err => reject(err),
         mfaRequired: function(){
-          _this.setState({ user: user, isLoading: false, aux: this /*, mfaEnabled: true E TIRAR 'user: user' */})
+          _this.setState({ user: user, isLoading: false, mfaEnabled: true})
         }
+      })
+    );
+  }
+
+  handleSubmitMFA = async event => {
+    event.preventDefault();
+    
+    this.setState({ isLoading: true });
+
+    try {
+      await this.sendMFA(this.state.user, this.state.MFA);
+
+      this.props.userHasAuthenticated(true, this.state.user);
+      this.props.history.push("/");
+    } catch (e) {
+      alert(e);
+      this.setState({ isLoading: false });
+    }
+  }
+
+  sendMFA(user, code){
+    const _this = this;
+    return new Promise((resolve, reject) =>
+      user.sendMFACode(code, {
+        onSuccess: result => resolve(
+          _this.setState({ user: user, isLoading: false, mfaEnabled: false})
+        ),
+        // User Cognito Identity ID -> user: getUserCognitoIdentityID
+        onFailure: err => reject(err)
       })
     );
   }
@@ -204,8 +176,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      this.state.user===null ? this.renderLogin() : this.renderConfirmationMFA()
-      //this.state.mfaEnabled === true ? this.renderConfirmationMFA() : this.renderLogin()
+      this.state.mfaEnabled === true ? this.renderConfirmationMFA() : this.renderLogin()
     );
   }
 }

@@ -33,13 +33,13 @@ class App extends Component {
   }
 
   async componentDidMount() {
-      if (getCurrentUser() != null) {
-        this.userHasAuthenticated(true, getCurrentUser());
-      }else{
-        signOutUser();
-        this.userHasAuthenticated(false, null);
-        this.props.history.push("/login");
-      }
+    if (getCurrentUser() != null) {
+      this.userHasAuthenticated(true, getCurrentUser());
+    }else{
+      signOutUser();
+      this.userHasAuthenticated(false, null);
+      // this.props.history.push("/login");
+    }
       
     this.setState({ isAuthenticating: false });
   }

@@ -51,7 +51,7 @@ export default class Login extends Component {
       // console.log(JSON.stringify.r);
       if (this.state.mfaEnabled === false){
         this.props.userHasAuthenticated(true, this.state.user);
-        this.props.history.push("/");
+        // this.props.history.push("/");
       }
     } catch (e) {
       alert(e);
@@ -92,7 +92,7 @@ export default class Login extends Component {
       await this.sendMFA(this.state.user, this.state.MFA);
 
       this.props.userHasAuthenticated(true, this.state.user);
-      this.props.history.push("/");
+      // this.props.history.push("/");
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });

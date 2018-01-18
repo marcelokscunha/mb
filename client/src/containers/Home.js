@@ -36,7 +36,7 @@ export default class Home extends Component {
     return invokeApig({ path: "/trips/" + this.props.user.username}); //rever attributos do identityId
   }
 
-  rendertripsList(trips) {
+  renderTripsList(trips) {
     // console.log(trips);
     const tripList = trips.map(
         (trip, i) =>
@@ -66,12 +66,12 @@ export default class Home extends Component {
     );
   }
 
-  rendertrips() {
+  renderTrips() {
     return (
       <div className="trips">
         <PageHeader>Suas viagens</PageHeader>
         <ListGroup>
-          {!this.state.isLoading && this.rendertripsList(this.state.trips)}
+          {!this.state.isLoading && this.renderTripsList(this.state.trips)}
         </ListGroup>
       </div>
     );
@@ -80,7 +80,7 @@ export default class Home extends Component {
   render() {
     return (
       <div className="Home">
-        {this.props.isAuthenticated ? this.rendertrips() : this.renderLander()}
+        {this.props.isAuthenticated ? this.renderTrips() : this.renderLander()}
       </div>
     );
   }

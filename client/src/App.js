@@ -4,7 +4,7 @@ import { Nav, Navbar, NavItem } from "react-bootstrap";
 import "./App.css";
 import Routes from "./Routes";
 import RouteNavItem from "./components/RouteNavItem";
-import { signOutUser, getCurrentUser } from "./libs/awsLib";
+import { authUser, signOutUser, getCurrentUser } from "./libs/awsLib";
 
 
 
@@ -32,17 +32,31 @@ class App extends Component {
     this.props.history.push("/login");
   }
 
+
+  // antigo
+  // async componentDidMount() {
+  //   if (getCurrentUser() != null) {
+  //     this.userHasAuthenticated(true, getCurrentUser());
+  //   }else{
+  //     signOutUser();
+  //     this.userHasAuthenticated(false, null);
+  //     // this.props.history.push("/login");
+  //   }
+  //   this.setState({ isAuthenticating: false });
+  // }
+
   async componentDidMount() {
-    if (getCurrentUser() != null) {
-      this.userHasAuthenticated(true, getCurrentUser());
-    }else{
-      signOutUser();
-      this.userHasAuthenticated(false, null);
-      // this.props.history.push("/login");
+    try {
+      if (await authUser()) {
+        this.userHasAuthenticated(true, getCurrentUser());
+      }
     }
-      
+    catch(e) {
+      alert(e);
+    }
     this.setState({ isAuthenticating: false });
   }
+
 
 
   render() {
@@ -74,7 +88,8 @@ class App extends Component {
                     <RouteNavItem key={2} href="/login">
                       Entrar
                     </RouteNavItem>
-                  ]}
+                  ]
+              }
             </Nav>
           </Navbar.Collapse>
         </Navbar>

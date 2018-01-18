@@ -3,5 +3,5 @@ import "./NotFound.css";
 
 export default () =>
   <div className="NotFound">
-    <h3>Sorry, page not found!</h3>
+    <h3>Página não encontrada :(</h3>
   </div>;

@@ -19,3 +19,5 @@
       "eject": "react-scripts eject"
     }
   }
+
+  // OBS em script -> "build": "webpack --define process.env.NODE_ENV='production'" 

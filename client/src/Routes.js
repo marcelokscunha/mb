@@ -5,7 +5,6 @@ import Home from "./containers/Home";
 import Login from "./containers/Login";
 import Signup from "./containers/Signup";
 import NotFound from "./containers/NotFound";
-import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
 export default ({ childProps }) =>

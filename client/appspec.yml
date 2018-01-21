@@ -3,3 +3,9 @@ os: linux
 files:
   - source: /
     destination: /var/www/html
+hooks:
+  BeforeInstall:
+    - location: appendApacheConfig.sh
+      timeout: 500
+      runas: root
+

@@ -50,8 +50,10 @@ export default class Login extends Component {
       // var r = getUserCognitoIdentityID();
       // console.log(JSON.stringify.r);
       if (this.state.mfaEnabled === false){
+        console.log(`GetUser Login submit ${this.state.user !=null ? this.state.user.username : 'null'}`)
+        console.log(`Props usesHasAuth ${this.props.userHasAuthenticated}`)
         this.props.userHasAuthenticated(true, this.state.user);
-        // this.props.history.push("/");
+        this.props.history.push("/");
       }
     } catch (e) {
       alert(e);

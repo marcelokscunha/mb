@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 import "./Home.css";
 import { invokeApig } from '../libs/awsLib';
+import { authUser, getCurrentUser } from "../libs/awsLib"
 
 
 export default class Home extends Component {
@@ -17,6 +18,15 @@ export default class Home extends Component {
   async componentDidMount() {
     // console.log("isAuthenticated: "+this.props.isAuthenticated);
     // console.log("home props " + JSON.stringify(this.props));
+    try {
+      if (await authUser()) {
+        console.log(`GetUser no Home didMount ${getCurrentUser() !=null ? getCurrentUser().username : 'null'}`)
+        this.props.userHasAuthenticated(true, getCurrentUser());
+      }
+    }
+    catch(e) {
+      alert(e);
+    }
     if (!this.props.isAuthenticated) {
       return;
     }

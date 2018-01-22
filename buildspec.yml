@@ -19,13 +19,13 @@ phases:
       - echo Entered the post_build phase...
       - echo Build completed on `date`
       - cd ./build/libs
-      - ls -l
+      - ls
       - pwd
+      - echo $PATH
+      - echo $HOME
+      - ls ~/
       # - command
 artifacts:
   files:
-    # - location
-    - trips-0.1.0.jar
-    # - location
-  #discard-paths: yes
-  #base-directory: location
+    - .
+

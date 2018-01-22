@@ -7,10 +7,10 @@ phases:
       - echo Entered the build phase...
       - ls
       - pwd
-      - sudo cd backend
+      - cd ./backend
       - ls
       - echo Build started on `date`
-      - sudo ./gradlew bootRepackage
+      - ./gradlew bootRepackage
       # - command
   post_build:
     commands:

@@ -13,8 +13,8 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
 jar {
-    baseName = 'trips' //'gs-accessing-data-rest'
-    version = '0.4.0' //'0.1.0'
+    baseName = 'trips'
+    version = '0.1.0' //'0.1.0'
 }
 
 repositories {

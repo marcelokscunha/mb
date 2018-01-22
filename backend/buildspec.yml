@@ -1,0 +1,27 @@
+version: 0.1
+
+phases:
+  build:
+    commands:
+      # - command
+      - echo Entered the build phase...
+      - ls
+      - pwd
+      - cd backend
+      - ls
+      - echo Build started on `date`
+      - ./gradlew bootRepackage
+      # - command
+  post_build:
+    commands:
+      # - command
+      - echo Entered the post_build phase...
+      - echo Build completed on `date`
+      # - command
+artifacts:
+  files:
+    # - location
+    - build/libs/trips-0.1.0.jar
+    # - location
+  #discard-paths: yes
+  #base-directory: location

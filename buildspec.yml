@@ -18,7 +18,9 @@ phases:
       # - command
       - echo Entered the post_build phase...
       - echo Build completed on `date`
+      - cd ./build/libs
       - ls -l
+      - pwd
       # - command
 artifacts:
   files:

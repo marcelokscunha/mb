@@ -23,8 +23,9 @@ phases:
       - MYPATH=$(pwd)
       - echo $MYPATH
       - ls ~/
+      - zip trips.zip trips-0.1.0.jar
       # - command
 artifacts:
   files:
-    - $MYPATH/trips-0.1.0.jar
+    - $MYPATH/trips.zip
 

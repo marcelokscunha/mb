@@ -20,12 +20,11 @@ phases:
       - echo Build completed on `date`
       - cd ./build/libs
       - ls
-      - pwd
-      - echo $PATH
-      - echo $HOME
+      - MYPATH=$(pwd)
+      - echo $MYPATH
       - ls ~/
       # - command
 artifacts:
   files:
-    - .
+    - $MYPATH/trips-0.1.0.jar
 

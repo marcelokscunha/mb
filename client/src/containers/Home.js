@@ -34,7 +34,7 @@ export default class Home extends Component {
 
     try {
       const results = await this.trips();
-      console.log("results trips() no Home: " + results);
+      console.log("results trips() no Home: " + JSON.stringify(results));
       this.setState({ trips: results._embedded.trips });
     } catch (e) {
       console.log(e);

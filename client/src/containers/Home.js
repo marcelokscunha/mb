@@ -20,7 +20,7 @@ export default class Home extends Component {
     // console.log("home props " + JSON.stringify(this.props));
     try {
       if (await authUser()) {
-        console.log(`GetUser no Home didMount ${getCurrentUser() !=null ? getCurrentUser().username : 'null'}`)
+        // console.log(`GetUser no Home didMount ${getCurrentUser() !=null ? getCurrentUser().username : 'null'}`)
         this.props.userHasAuthenticated(true, getCurrentUser());
       }
     }

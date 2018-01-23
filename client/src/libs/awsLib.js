@@ -109,7 +109,7 @@ export async function invokeApig({
   body
 }) {
   console.log(path);
-  console.log("no Invoke API awsLib " + config.apiGateway.URL);
+  console.log("no Invoke API awsLib " + JSON.stringify(config.apiGateway.URL));
 
   if (!await authUser()) {
     throw new Error("User is not logged in");

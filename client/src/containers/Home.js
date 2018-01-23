@@ -28,12 +28,13 @@ export default class Home extends Component {
       alert(e);
     }
     if (!this.props.isAuthenticated) {
+      console.log("no Home componentDidMount: isAuthenticated = " + this.props.isAuthenticated)
       return;
     }
 
     try {
       const results = await this.trips();
-      // console.log(results);
+      console.log("results trips() no Home: " + results);
       this.setState({ trips: results._embedded.trips });
     } catch (e) {
       console.log(e);
@@ -46,7 +47,7 @@ export default class Home extends Component {
   
   trips() {
     console.log("--> username no Home invocando APIGW: " + JSON.stringify(this.props.user.username));
-    return invokeApig({ path: "/trips/" + this.props.user.username}); //rever attributos do identityId
+    return invokeApig({ path: "/trips/" + this.props.user.username}); 
   }
 
   renderTripsList(trips) {

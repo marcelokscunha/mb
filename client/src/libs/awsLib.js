@@ -108,6 +108,8 @@ export async function invokeApig({
   queryParams = {},
   body
 }) {
+  console.log(path);
+
   if (!await authUser()) {
     throw new Error("User is not logged in");
   }
@@ -144,6 +146,7 @@ export async function invokeApig({
   console.log(config.apiGateway.URL);
   return results.json();
 }
+
 
 // import { CognitoUserPool } from "amazon-cognito-identity-js";
 // import config from "../config";

@@ -9,7 +9,7 @@ export default {
 
     },
     apiGateway: {
-      URL: process.env.REACT_APP_API_STAGE, //"https://gu8mm28yj2.execute-api.us-east-1.amazonaws.com/prod",// /*serverless: */ "https://4hytqytdq4.execute-api.us-east-1.amazonaws.com/prod",
+      URL: "https://gu8mm28yj2.execute-api.us-east-1.amazonaws.com/dev", //process.env.REACT_APP_API_STAGE, // /*serverless: */ "https://4hytqytdq4.execute-api.us-east-1.amazonaws.com/prod",
       REGION: "us-east-1"
     }
 

@@ -47,7 +47,7 @@ export default class Home extends Component {
   
   trips() {
     console.log("--> username no Home invocando APIGW: " + JSON.stringify(this.props.user.username));
-    return invokeApig({ path: "/trips"}); //  /" + this.props.user.username}); 
+    return invokeApig({ path: "/trips/" + this.props.user.username}); 
   }
 
   renderTripsList(trips) {

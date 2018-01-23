@@ -20,7 +20,7 @@ export default class Home extends Component {
     // console.log("home props " + JSON.stringify(this.props));
     try {
       if (await authUser()) {
-        // console.log(`GetUser no Home didMount ${getCurrentUser() !=null ? getCurrentUser().username : 'null'}`)
+        console.log(`GetUser no Home didMount ${getCurrentUser() !=null ? getCurrentUser().username : 'null'}`)
         this.props.userHasAuthenticated(true, getCurrentUser());
       }
     }
@@ -40,9 +40,11 @@ export default class Home extends Component {
     }
   
     this.setState({ isLoading: false });
+    console.log("user name no APIGW: " + JSON.stringify(this.props.user.username));
   }
   
   trips() {
+    console.log("--API GW");
     return invokeApig({ path: "/trips/" + this.props.user.username}); //rever attributos do identityId
   }
 

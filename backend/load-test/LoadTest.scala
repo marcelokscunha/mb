@@ -6,11 +6,11 @@ class LoadTest extends Simulation {
 
   val httpConf = http
 
-    .baseURL("https://gu8mm28yj2.execute-api.us-east-1.amazonaws.com/prod/")
+    .baseURL("https://68kn4hlxy8.execute-api.us-east-1.amazonaws.com/qa")
     .acceptHeader(HttpHeaderValues.ApplicationJson)
     .acceptLanguageHeader("en-US,en;q=0.5")
     .header(HttpHeaderNames.ContentType, HttpHeaderValues.ApplicationJson)
-    
+
     //.header(HttpHeaderNames.Authorization, "test-user")
 
     .userAgentHeader("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36")

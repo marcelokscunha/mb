@@ -26,6 +26,6 @@ phases:
       # - command
 artifacts:
   files:
-    - build/libs/trips-0.1.0.jar
+    - ./build/libs/trips-0.1.0.jar
   discard-paths: yes
 

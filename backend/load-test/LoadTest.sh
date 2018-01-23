@@ -8,33 +8,33 @@ pwd
 echo "0 -  "
 ls
 
-mv $SCRIPT_PATH/LoadTest.scala $MYPATH/user-files/simulations
+sudo mv $SCRIPT_PATH/LoadTest.scala $MYPATH/user-files/simulations
 pwd
 echo "1 -  "
 ls
 
-$MYPATH/bin/gatling.sh -s LoadTest
+sudo $MYPATH/bin/gatling.sh -s LoadTest
 pwd
 echo "2 -  "
 ls
 
-cd $MYPATH/results
+sudo cd $MYPATH/results
 pwd
 echo "3 -  "
 ls
 
-aws s3 sync . s3://mb-gatling-reports/reports
+sudo aws s3 sync $MYPATH/results s3://mb-gatling-reports/reports
 # aws s3 cp ./* s3://mb-gatling-reports/reports --recursive
 
 pwd
 echo "4 -  "
 ls
-cd $MYPATH/results/*
+sudo cd $MYPATH/results/*
 
 echo "5 -  "
 pwd
 ls
 aws s3 rm s3://mb-gatling-reports --recursive --exclude "reports/*"
-aws s3 sync . s3://mb-gatling-reports
+sudo aws s3 sync $MYPATH/results/* s3://mb-gatling-reports
 
-rm -r $MYPATH/results/*
+sudo rm -r $MYPATH/results/*

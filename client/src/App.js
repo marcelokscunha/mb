@@ -23,7 +23,7 @@ class App extends Component {
   userHasAuthenticated = (authenticated, user) => {
     this.setState({ isAuthenticated: authenticated });
     this.setState({ user: user });
-    // console.log(`GetUser no App userHasAuthenticated()  ${user !=null ? user.username : 'null'}`)
+    console.log(`GetUser no App userHasAuthenticated()  ${user !=null ? user.username : 'null'}`)
   }
 
   handleLogout = event => {

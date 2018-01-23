@@ -141,7 +141,7 @@ export async function invokeApig({
     throw new Error(await results.text());
   }
 
-  // console.log(config.apiGateway.URL);
+  console.log(config.apiGateway.URL);
   return results.json();
 }
 

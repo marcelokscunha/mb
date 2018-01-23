@@ -40,11 +40,12 @@ export default class Home extends Component {
     }
   
     this.setState({ isLoading: false });
-    console.log("user name no APIGW: " + JSON.stringify(this.props.user.username));
+    console.log("username no Home DidMount: " + JSON.stringify(this.props.user.username));
   }
+
   
   trips() {
-    console.log("--API GW");
+    console.log("--> username no Home invocando APIGW: " + JSON.stringify(this.props.user.username));
     return invokeApig({ path: "/trips/" + this.props.user.username}); //rever attributos do identityId
   }
 

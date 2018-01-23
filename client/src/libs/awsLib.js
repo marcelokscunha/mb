@@ -109,6 +109,7 @@ export async function invokeApig({
   body
 }) {
   console.log(path);
+  console.log("no Invoke API awsLib " + config.apiGateway.URL);
 
   if (!await authUser()) {
     throw new Error("User is not logged in");
@@ -133,11 +134,16 @@ export async function invokeApig({
   body = body ? JSON.stringify(body) : body;
   headers = signedRequest.headers;
 
+
+  console.log("antes do fetch");
+
   const results = await fetch(signedRequest.url, {
     method,
     headers,
     body
   });
+
+  console.log("depois do fetch");
 
   if (results.status !== 200) {
     throw new Error(await results.text());

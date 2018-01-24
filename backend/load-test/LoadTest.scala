@@ -27,6 +27,4 @@ class LoadTest extends Simulation {
     ).protocols(httpConf)
 }
 
-//curl -i -H "Accept: application/json" -X GET https://gu8mm28yj2.execute-api.us-east-1.amazonaws.com/prod/trips
-
-// ./bin/gatling.sh -s LoadTest
+//curl -i -H "Accept: application/json" -X GET https://68kn4hlxy8.execute-api.us-east-1.amazonaws.com/qa
